@@ -1,0 +1,58 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group = 'com.shopify'
+version = '1.0.0'
+description = 'A Java project for the Shopify technical challenge'
+
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    // Lombok for reducing boilerplate code
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
+    
+    // JUnit 5 for testing
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+    
+    // Mockito for mocking in tests
+    testImplementation 'org.mockito:mockito-core:5.3.1'
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.3.1'
+}
+
+application {
+    mainClass = 'com.shopify.TextManipulator'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+jar {
+    manifest {
+        attributes(
+            'Main-Class': 'com.shopify.TextManipulator'
+        )
+    }
+}
+
+// Task to run the application
+task runApp(type: JavaExec) {
+    group = 'application'
+    description = 'Run the Hello World application'
+    classpath = sourceSets.main.runtimeClasspath
+    mainClass = 'com.shopify.TextManipulator'
+} 
