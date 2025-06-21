@@ -14,7 +14,7 @@ public class TextManipulator {
      * @param request Contains the original text and command string
      * @return Result with manipulated text and final cursor position
      */
-    public static ManipulatedTextResult textManipulator(ManipulatedTextRequest request) {
+    public ManipulatedTextResult textManipulator(ManipulatedTextRequest request) {
         // Handle null request gracefully
         if (Objects.isNull(request)) {
             return ManipulatedTextResult.builder().build();
@@ -55,7 +55,7 @@ public class TextManipulator {
      * @param state Current text and cursor state
      * @return Updated index position in command string
      */
-    private static int handleSingleCommand(String commands, int index, TextState state) {
+    private int handleSingleCommand(String commands, int index, TextState state) {
         return handleCommand(commands, index, state, 1);
     }
 
@@ -67,7 +67,7 @@ public class TextManipulator {
      * @param state Current text and cursor state
      * @return Updated index position in command string
      */
-    private static int handleNumericCommand(String commands, int index, TextState state) {
+    private int handleNumericCommand(String commands, int index, TextState state) {
         // Parse the numeric prefix to get the count
         int count = parseNumber(commands, index);
         
@@ -93,7 +93,7 @@ public class TextManipulator {
      * @param count Number of times to apply the command (1 for single commands)
      * @return Updated index position in command string
      */
-    private static int handleCommand(String commands, int index, TextState state, int count) {
+    private int handleCommand(String commands, int index, TextState state, int count) {
         char command = commands.charAt(index);
         
         switch (command) {
@@ -116,7 +116,7 @@ public class TextManipulator {
      * @param state Current text and cursor state
      * @param count Number of positions to move left
      */
-    private static void moveCursorLeft(TextState state, int count) {
+    private void moveCursorLeft(TextState state, int count) {
         state.setCursorPosition(Math.max(0, state.getCursorPosition() - count));
     }
 
@@ -126,7 +126,7 @@ public class TextManipulator {
      * @param state Current text and cursor state
      * @param count Number of positions to move right
      */
-    private static void moveCursorRight(TextState state, int count) {
+    private void moveCursorRight(TextState state, int count) {
         state.setCursorPosition(Math.min(state.getText().length() - 1, state.getCursorPosition() + count));
     }
 
@@ -137,7 +137,7 @@ public class TextManipulator {
      * @param count Number of characters to replace
      * @param replacementChar Character to replace with
      */
-    private static void replaceCharacters(TextState state, int count, char replacementChar) {
+    private void replaceCharacters(TextState state, int count, char replacementChar) {
         // Calculate the end position (don't go beyond text length)
         int endPos = Math.min(state.getCursorPosition() + count, state.getText().length());
         
@@ -157,7 +157,7 @@ public class TextManipulator {
      * @param startIndex Starting position to parse from
      * @return The parsed number (clamped to Integer.MAX_VALUE if too large)
      */
-    private static int parseNumber(String commands, int startIndex) {
+    private int parseNumber(String commands, int startIndex) {
         StringBuilder numberStr = new StringBuilder();
         int i = startIndex;
         

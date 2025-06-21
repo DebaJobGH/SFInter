@@ -10,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("TextManipulator Tests")
 class TextManipulatorTest {
 
+    private final TextManipulator textManipulator = new TextManipulator();
+
     @Test
     @DisplayName("Test case 1: hll")
     void testCase1() {
@@ -20,7 +22,7 @@ class TextManipulatorTest {
             .build();
 
         // When
-        ManipulatedTextResult result = TextManipulator.textManipulator(request);
+        ManipulatedTextResult result = textManipulator.textManipulator(request);
 
         // Then
         assertEquals("Hello World", result.getManipulatedText());
@@ -37,7 +39,7 @@ class TextManipulatorTest {
             .build();
 
         // When
-        ManipulatedTextResult result = TextManipulator.textManipulator(request);
+        ManipulatedTextResult result = textManipulator.textManipulator(request);
 
         // Then
         assertEquals("lello World", result.getManipulatedText());
@@ -54,7 +56,7 @@ class TextManipulatorTest {
             .build();
 
         // When
-        ManipulatedTextResult result = TextManipulator.textManipulator(request);
+        ManipulatedTextResult result = textManipulator.textManipulator(request);
 
         // Then
         assertEquals("hello world", result.getManipulatedText());
@@ -71,7 +73,7 @@ class TextManipulatorTest {
             .build();
 
         // When
-        ManipulatedTextResult result = TextManipulator.textManipulator(request);
+        ManipulatedTextResult result = textManipulator.textManipulator(request);
 
         // Then
         assertEquals("HeLLo WorLd", result.getManipulatedText());
@@ -88,7 +90,7 @@ class TextManipulatorTest {
             .build();
 
         // When
-        ManipulatedTextResult result = TextManipulator.textManipulator(request);
+        ManipulatedTextResult result = textManipulator.textManipulator(request);
 
         // Then
         assertEquals("Hello Worl0", result.getManipulatedText());
@@ -105,7 +107,7 @@ class TextManipulatorTest {
             .build();
 
         // When
-        ManipulatedTextResult result = TextManipulator.textManipulator(request);
+        ManipulatedTextResult result = textManipulator.textManipulator(request);
 
         // Then
         assertEquals("sssssssssss", result.getManipulatedText());
